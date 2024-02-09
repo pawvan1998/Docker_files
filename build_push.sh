@@ -34,7 +34,7 @@ ecr_repo_name=$DOCKER_IMAGE_NAME"-ecr-repo"
 echo "value of ecr_repo_name is $ecr_repo_name"
 
 # || means if the first command succeed the second will never be executed
-aws ecr describe-repositories --repository-names ${ecr_repo_name} || aws ecr create-repository --repository-name ${ecr_repo_name}
+aws ecr describe-repositories --repository-name ${ecr_repo_name} || aws ecr create-repository --repository-name ${ecr_repo_name}
 
 image_name=$DOCKER_IMAGE_NAME-$CODEBUILD_BUILD_NUMBER
 
@@ -45,7 +45,7 @@ fullname="${account}.dkr.ecr.${region}.amazonaws.com/${ecr_repo_name}:$image_nam
 echo "fullname is $fullname"
 # Build the docker image locally with the image name and then push it to ECR with the full name.
 
-docker build -t ${image_name} $CODEBUILD_SRC_DIR/docker_python/
+docker build -t ${image_name} $CODEBUILD_SRC_DIR/
 echo "Docker build after"
 
 echo "image_name is $image_name"

@@ -6,7 +6,7 @@
 # The argument to this script is the image name. This will be used as the image on the local
 #machine and combined with the account and region to form the repository name for ECR.
 #Algorithm Name will be the Reposistory Name that is passed as a command line parameter.
-echo "Inside build_and_push.sh file"
+echo "Inside build_push.sh file"
 DOCKER_IMAGE_NAME=$1
 
 echo "value of DOCKER_IMAGE_NAME is $DOCKER_IMAGE_NAME"
@@ -45,7 +45,7 @@ fullname="${account}.dkr.ecr.${region}.amazonaws.com/${ecr_repo_name}:$image_nam
 echo "fullname is $fullname"
 # Build the docker image locally with the image name and then push it to ECR with the full name.
 
-docker build -t ${image_name} $CODEBUILD_SRC_DIR/
+docker build -t ${image_name} $CODEBUILD_SRC_DIR
 echo "Docker build after"
 
 echo "image_name is $image_name"
